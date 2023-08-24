@@ -1,20 +1,23 @@
 package com.melikesivrikaya.toDoList.model;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-@Table(name = "user")
+@Entity
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name,password,address;
-    private ListTitle listTitle;
-    private Friend friend;
+    private String name;
+    private String password;
+    private String address;
+
 
 }
