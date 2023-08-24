@@ -8,20 +8,17 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/users")
 @AllArgsConstructor
 public class UserControllerImpl implements UserController{
     private UserService userService;
-    @GetMapping(path = "users")
+    @GetMapping
     @Override
     public List<User> getUsers() {
         return userService.getUsers();
@@ -30,5 +27,20 @@ public class UserControllerImpl implements UserController{
     @Override
     public Optional<User> getUser(@RequestParam(name = "id") Long id){
         return userService.getUser(id);
+    }
+    @DeleteMapping(path = "user")
+    @Override
+    public void deleteUser(@RequestParam(name = "id") Long id) {
+        userService.deleteUser(id);
+    }
+    @PostMapping
+    @Override
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
+    @PutMapping
+    @Override
+    public User updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
     }
 }
