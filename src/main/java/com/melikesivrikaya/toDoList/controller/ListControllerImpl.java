@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.List;
+import com.melikesivrikaya.toDoList.responce.ListResponce;
 import com.melikesivrikaya.toDoList.service.ListService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,12 @@ public class ListControllerImpl implements ListController{
     private ListService listService;
     @GetMapping
     @Override
-    public java.util.List<List> getLists() {
+    public java.util.List<ListResponce> getLists() {
         return listService.getLists();
     }
     @GetMapping(path = "/list")
     @Override
-    public Optional<List> getList(@RequestParam(name = "id") Long id) {
+    public ListResponce getList(@RequestParam(name = "id") Long id) {
         return listService.getList(id);
     }
     @DeleteMapping(path = "/list")
@@ -28,17 +29,17 @@ public class ListControllerImpl implements ListController{
     }
     @PostMapping
     @Override
-    public List createList(@RequestBody List list) {
+    public ListResponce createList(@RequestBody List list) {
         return listService.createList(list);
     }
     @PutMapping
     @Override
-    public List updateList(@RequestBody List list) {
+    public ListResponce updateList(@RequestBody List list) {
         return listService.updateList(list);
     }
     @GetMapping("/{userId}")
     @Override
-    public java.util.List<List> getListsByUserId(@PathVariable Long userId) {
+    public java.util.List<ListResponce> getListsByUserId(@PathVariable Long userId) {
         return listService.getListsByUserId(userId);
     }
 }

@@ -2,22 +2,27 @@ package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.List;
 import com.melikesivrikaya.toDoList.repository.ListRepository;
+import com.melikesivrikaya.toDoList.responce.ListResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class ListServiceImpl implements ListService{
     private ListRepository listRepository;
     @Override
-    public java.util.List<List> getLists() {
-        return listRepository.findAll();
+    public java.util.List<ListResponce> getLists() {
+        java.util.List<List> lists = listRepository.findAll();
+        return lists.stream().map(l -> new ListResponce(l)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<List> getList(Long id) {
-        return listRepository.findById(id);
+    public ListResponce getList(Long id) {
+    List list = listRepository.findById(id).get();
+        return new ListResponce(list);
     }
 
     @Override
@@ -26,17 +31,20 @@ public class ListServiceImpl implements ListService{
     }
 
     @Override
-    public List createList(List list) {
-        return listRepository.save(list);
+    public ListResponce createList(List list) {
+        listRepository.save(list);
+        return new ListResponce(list);
     }
 
     @Override
-    public List updateList(List list) {
-        return listRepository.save(list);
+    public ListResponce updateList(List list) {
+        listRepository.save(list);
+        return new ListResponce(list);
     }
 
     @Override
-    public java.util.List<List> getListsByUserId(Long userId) {
-        return listRepository.findAllByUserId(userId);
+    public java.util.List<ListResponce> getListsByUserId(Long userId) {
+        java.util.List<List> lists = listRepository.findAllByUserId(userId);
+        return lists.stream().map(l -> new ListResponce(l)).collect(Collectors.toList());
     }
 }

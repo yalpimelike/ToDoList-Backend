@@ -1,15 +1,14 @@
 package com.melikesivrikaya.toDoList.service;
 
-import com.melikesivrikaya.toDoList.model.ListTitle;
+import com.melikesivrikaya.toDoList.responce.ListResponce;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ListService {
-    List<com.melikesivrikaya.toDoList.model.List> getLists();
-    Optional<com.melikesivrikaya.toDoList.model.List> getList(Long id);
+    List<ListResponce> getLists();
+    ListResponce getList(Long id);
     void deleteList(Long id);
-    com.melikesivrikaya.toDoList.model.List createList(com.melikesivrikaya.toDoList.model.List list);
-    com.melikesivrikaya.toDoList.model.List updateList(com.melikesivrikaya.toDoList.model.List list);
-    java.util.List<com.melikesivrikaya.toDoList.model.List> getListsByUserId(Long userId);
+    ListResponce createList(com.melikesivrikaya.toDoList.model.List list);
+    ListResponce updateList(com.melikesivrikaya.toDoList.model.List list);
+    List<ListResponce> getListsByUserId(Long userId);
 }
