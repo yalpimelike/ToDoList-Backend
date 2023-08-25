@@ -19,6 +19,11 @@ public class ListTitleControllerImpl implements ListTitleController {
     public List<ListTitle> getListTitles() {
         return listTitleService.getListTitles();
     }
+    @GetMapping("/{userId}")
+    @Override
+    public List<ListTitle> getListTitlesByUserId(@PathVariable Long userId) {
+        return listTitleService.getListTitlesByUserId(userId);
+    }
     @GetMapping(path = "/listtitle")
     @Override
     public Optional<ListTitle> getListTitle(@RequestParam(name = "id") Long id) {
@@ -39,4 +44,5 @@ public class ListTitleControllerImpl implements ListTitleController {
     public ListTitle updateListTitle(@RequestBody ListTitle listTitle) {
         return listTitleService.updateListTitle(listTitle);
     }
+
 }

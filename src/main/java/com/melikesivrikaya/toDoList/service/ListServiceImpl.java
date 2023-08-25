@@ -34,4 +34,9 @@ public class ListServiceImpl implements ListService{
     public List updateList(List list) {
         return listRepository.save(list);
     }
+
+    @Override
+    public java.util.List<List> getListsByUserId(Long userId) {
+        return listRepository.findAllByUserId(userId);
+    }
 }

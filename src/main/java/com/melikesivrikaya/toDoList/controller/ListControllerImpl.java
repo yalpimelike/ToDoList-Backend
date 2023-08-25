@@ -36,4 +36,9 @@ public class ListControllerImpl implements ListController{
     public List updateList(@RequestBody List list) {
         return listService.updateList(list);
     }
+    @GetMapping("/{userId}")
+    @Override
+    public java.util.List<List> getListsByUserId(@PathVariable Long userId) {
+        return listService.getListsByUserId(userId);
+    }
 }

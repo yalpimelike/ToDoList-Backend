@@ -34,4 +34,9 @@ public class ListTitleServiceImpl implements ListTitleService{
     public ListTitle updateListTitle(ListTitle listTitle) {
         return listTitleRepository.save(listTitle);
     }
+
+    @Override
+    public List<ListTitle> getListTitlesByUserId(Long userId) {
+        return listTitleRepository.findAllByUserId(userId);
+    }
 }

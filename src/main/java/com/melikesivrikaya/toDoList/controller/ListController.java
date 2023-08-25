@@ -10,4 +10,6 @@ public interface ListController {
     void deleteList(Long id);
     com.melikesivrikaya.toDoList.model.List createList(com.melikesivrikaya.toDoList.model.List list);
     com.melikesivrikaya.toDoList.model.List updateList(com.melikesivrikaya.toDoList.model.List list);
+    java.util.List<List> getListsByUserId(Long userId);
+
 }

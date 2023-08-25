@@ -12,4 +12,5 @@ public interface ListTitleController {
     void deleteListTitle(Long id);
     ListTitle createListTitle(ListTitle listTitle);
     ListTitle updateListTitle(ListTitle listTitle);
+    List<ListTitle> getListTitlesByUserId(Long userId);
 }

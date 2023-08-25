@@ -11,4 +11,5 @@ public interface ListService {
     void deleteList(Long id);
     com.melikesivrikaya.toDoList.model.List createList(com.melikesivrikaya.toDoList.model.List list);
     com.melikesivrikaya.toDoList.model.List updateList(com.melikesivrikaya.toDoList.model.List list);
+    java.util.List<com.melikesivrikaya.toDoList.model.List> getListsByUserId(Long userId);
 }
