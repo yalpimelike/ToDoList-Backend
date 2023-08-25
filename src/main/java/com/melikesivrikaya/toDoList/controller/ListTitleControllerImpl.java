@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
+import com.melikesivrikaya.toDoList.responce.ListTitleResponce;
 import com.melikesivrikaya.toDoList.service.ListTitleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,17 @@ public class ListTitleControllerImpl implements ListTitleController {
     private ListTitleService listTitleService;
     @GetMapping
     @Override
-    public List<ListTitle> getListTitles() {
+    public List<ListTitleResponce> getListTitles() {
         return listTitleService.getListTitles();
     }
     @GetMapping("/{userId}")
     @Override
-    public List<ListTitle> getListTitlesByUserId(@PathVariable Long userId) {
+    public List<ListTitleResponce> getListTitlesByUserId(@PathVariable Long userId) {
         return listTitleService.getListTitlesByUserId(userId);
     }
     @GetMapping(path = "/listtitle")
     @Override
-    public Optional<ListTitle> getListTitle(@RequestParam(name = "id") Long id) {
+    public ListTitleResponce getListTitle(@RequestParam(name = "id") Long id) {
         return listTitleService.getListTitle(id);
     }
     @DeleteMapping(path = "/listtitle")
@@ -36,12 +37,12 @@ public class ListTitleControllerImpl implements ListTitleController {
     }
     @PostMapping
     @Override
-    public ListTitle createListTitle(@RequestBody ListTitle listTitle) {
+    public ListTitleResponce createListTitle(@RequestBody ListTitle listTitle) {
         return listTitleService.createListTitle(listTitle);
     }
     @PutMapping
     @Override
-    public ListTitle updateListTitle(@RequestBody ListTitle listTitle) {
+    public ListTitleResponce updateListTitle(@RequestBody ListTitle listTitle) {
         return listTitleService.updateListTitle(listTitle);
     }
 
