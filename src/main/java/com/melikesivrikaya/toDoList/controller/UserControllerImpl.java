@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.User;
+import com.melikesivrikaya.toDoList.responce.UserResponce;
 import com.melikesivrikaya.toDoList.service.UserService;
 import com.melikesivrikaya.toDoList.service.UserServiceImpl;
 import jakarta.annotation.Resource;
@@ -20,12 +21,12 @@ public class UserControllerImpl implements UserController{
     private UserService userService;
     @GetMapping
     @Override
-    public List<User> getUsers() {
+    public List<UserResponce> getUsers() {
         return userService.getUsers();
     }
     @GetMapping(path = "user")
     @Override
-    public Optional<User> getUser(@RequestParam(name = "id") Long id){
+    public UserResponce getUser(@RequestParam(name = "id") Long id){
         return userService.getUser(id);
     }
     @DeleteMapping(path = "user")
@@ -35,12 +36,12 @@ public class UserControllerImpl implements UserController{
     }
     @PostMapping
     @Override
-    public User createUser(@RequestBody User user) {
+    public UserResponce createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
     @PutMapping
     @Override
-    public User updateUser(@RequestBody User user) {
+    public UserResponce updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 }
