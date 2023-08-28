@@ -2,6 +2,7 @@ package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.User;
 import com.melikesivrikaya.toDoList.responce.UserResponce;
+import com.melikesivrikaya.toDoList.responce.UserWithFriendResponce;
 import com.melikesivrikaya.toDoList.service.UserService;
 import com.melikesivrikaya.toDoList.service.UserServiceImpl;
 import jakarta.annotation.Resource;
@@ -26,7 +27,7 @@ public class UserControllerImpl implements UserController{
     }
     @GetMapping(path = "user")
     @Override
-    public UserResponce getUser(@RequestParam(name = "id") Long id){
+    public UserWithFriendResponce getUser(@RequestParam(name = "id") Long id){
         return userService.getUser(id);
     }
     @DeleteMapping(path = "user")

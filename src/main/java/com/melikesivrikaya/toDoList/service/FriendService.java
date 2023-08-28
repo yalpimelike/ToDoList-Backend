@@ -12,4 +12,5 @@ public interface FriendService {
     Friend updateFriend(Friend friend);
     void deleteFriend(Long id);
 
+    List<Friend> getFriendsByUserId(Long id);
 }

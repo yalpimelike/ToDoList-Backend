@@ -1,8 +1,10 @@
 package com.melikesivrikaya.toDoList.service;
 
+import com.melikesivrikaya.toDoList.model.Friend;
 import com.melikesivrikaya.toDoList.model.User;
 import com.melikesivrikaya.toDoList.repository.UserRepository;
 import com.melikesivrikaya.toDoList.responce.UserResponce;
+import com.melikesivrikaya.toDoList.responce.UserWithFriendResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +18,17 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
+    private FriendService friendService;
     @Override
     public List<UserResponce> getUsers() {
         List<User> users = userRepository.findAll();
          return users.stream().map(user -> new UserResponce(user)).collect(Collectors.toList());
     }
     @Override
-    public UserResponce getUser(Long id) {
+    public UserWithFriendResponce getUser(Long id) {
         User user = userRepository.findById(id).get();
-        return new UserResponce(user);
+        List<Friend> friends = friendService.getFriendsByUserId(id);
+         return new UserWithFriendResponce(user,friends);
     }
     @Override
     public void deleteUser(Long id) {
