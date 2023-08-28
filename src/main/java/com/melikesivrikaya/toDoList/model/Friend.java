@@ -16,5 +16,5 @@ public class Friend {
     private Long id;
     private Long userId;
     private String name;
-    private FriendState friendState;
+    private String friendState;
 }
