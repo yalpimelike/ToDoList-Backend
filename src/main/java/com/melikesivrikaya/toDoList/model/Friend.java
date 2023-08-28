@@ -14,6 +14,7 @@ public class Friend {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long userId;
     private String name;
     private FriendState friendState;
 }
