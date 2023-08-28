@@ -6,7 +6,6 @@ import com.melikesivrikaya.toDoList.responce.ListResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,5 +45,11 @@ public class ListServiceImpl implements ListService{
     public java.util.List<ListResponce> getListsByUserId(Long userId) {
         java.util.List<List> lists = listRepository.findAllByUserId(userId);
         return lists.stream().map(l -> new ListResponce(l)).collect(Collectors.toList());
+    }
+/////////////////////////////////////////////////////
+    @Override
+    public java.util.List<ListResponce> getListByListTitleId(Long titleId) {
+        java.util.List<List> list =  listRepository.findAllByListNameId(titleId);
+        return list.stream().map(l -> new ListResponce(l)).collect(Collectors.toList());
     }
 }

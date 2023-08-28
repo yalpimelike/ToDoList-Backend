@@ -1,7 +1,9 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
+import com.melikesivrikaya.toDoList.repository.ListTitleWithListResponce;
 import com.melikesivrikaya.toDoList.responce.ListTitleResponce;
+import com.melikesivrikaya.toDoList.service.ListService;
 import com.melikesivrikaya.toDoList.service.ListTitleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,12 +19,12 @@ public class ListTitleControllerImpl implements ListTitleController {
     private ListTitleService listTitleService;
     @GetMapping
     @Override
-    public List<ListTitleResponce> getListTitles() {
+    public List<ListTitleWithListResponce> getListTitles() {
         return listTitleService.getListTitles();
     }
     @GetMapping("/{userId}")
     @Override
-    public List<ListTitleResponce> getListTitlesByUserId(@PathVariable Long userId) {
+    public List<ListTitleWithListResponce> getListTitlesByUserId(@PathVariable Long userId) {
         return listTitleService.getListTitlesByUserId(userId);
     }
     @GetMapping(path = "/listtitle")

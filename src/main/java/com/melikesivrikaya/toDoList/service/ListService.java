@@ -11,4 +11,6 @@ public interface ListService {
     ListResponce createList(com.melikesivrikaya.toDoList.model.List list);
     ListResponce updateList(com.melikesivrikaya.toDoList.model.List list);
     List<ListResponce> getListsByUserId(Long userId);
+
+    List<ListResponce> getListByListTitleId(Long titleId);
 }

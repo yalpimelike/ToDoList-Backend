@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ListRepository extends JpaRepository<List,Long> {
     java.util.List<List> findAllByUserId(Long userId);
+
+    java.util.List<List> findAllByListNameId(Long titleId);
 }
