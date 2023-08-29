@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.Friend;
+import com.melikesivrikaya.toDoList.model.FriendState;
 import com.melikesivrikaya.toDoList.service.FriendService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,9 @@ public class FriendControllerImpl implements FriendController{
     @PostMapping
     @Override
     public Friend createFriend(@RequestBody Friend friend) {
+        if(friend.getFriendState()== null){
+            friend.setFriendState(FriendState.WAIT);
+        }
         return friendService.createFriend(friend);
     }
     @PutMapping
