@@ -2,6 +2,7 @@ package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.Friend;
 import com.melikesivrikaya.toDoList.model.FriendState;
+import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 import com.melikesivrikaya.toDoList.service.FriendService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -28,19 +29,29 @@ public class FriendControllerImpl implements FriendController{
     @PostMapping
     @Override
     public Friend createFriend(@RequestBody Friend friend) {
-        if(friend.getFriendState()== null){
-            friend.setFriendState(FriendState.WAIT);
-        }
         return friendService.createFriend(friend);
     }
     @PutMapping
     @Override
-    public Friend updateFriend(@RequestBody Friend friend) {
-        return friendService.updateFriend(friend);
+    public Friend updateFriend(@RequestBody UpdateFriendRequest updateFriend) {
+
+        return friendService.updateFriend(updateFriend);
     }
     @DeleteMapping("/{id}")
     @Override
     public void deleteFriend(@PathVariable Long id) {
         friendService.deleteFriend(id);
     }
+    @GetMapping("/friend")
+    @Override
+    public List<Friend> getFriendsByUserId(@RequestParam(name = "userId") Long userId) {
+        return friendService.getFriendsByUserId(userId);
+    }
+    @GetMapping({"/friend/{friendId}"})
+    @Override
+    public List<Friend> getFriendsByFriendId(@PathVariable Long friendId){
+        return friendService.getFriendsByFriendsId(friendId);
+    }
+
+
 }

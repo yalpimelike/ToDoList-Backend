@@ -14,4 +14,5 @@ public interface UserService {
     UserResponce createUser(User user);
     UserResponce updateUser(User user);
 
+    List<UserResponce> getUsersWitoutFriendByUserId(Long userId);
 }

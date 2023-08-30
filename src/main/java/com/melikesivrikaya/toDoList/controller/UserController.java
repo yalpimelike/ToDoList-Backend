@@ -14,6 +14,6 @@ public interface UserController {
     void deleteUser(Long id);
     UserResponce createUser(User user);
     UserResponce updateUser(User user);
-
+    List<UserResponce> getUsersWitoutFriendByUserId(Long userId);
 
 }

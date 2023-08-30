@@ -45,4 +45,9 @@ public class UserControllerImpl implements UserController{
     public UserResponce updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
+    @GetMapping("{userId}")
+    @Override
+    public List<UserResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
+        return userService.getUsersWitoutFriendByUserId(userId);
+    }
 }
