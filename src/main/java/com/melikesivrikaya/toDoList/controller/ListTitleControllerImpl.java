@@ -2,15 +2,12 @@ package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
 import com.melikesivrikaya.toDoList.repository.ListTitleWithListResponce;
-import com.melikesivrikaya.toDoList.responce.ListTitleResponce;
-import com.melikesivrikaya.toDoList.service.ListService;
+import com.melikesivrikaya.toDoList.response.ListTitleResponce;
 import com.melikesivrikaya.toDoList.service.ListTitleService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor

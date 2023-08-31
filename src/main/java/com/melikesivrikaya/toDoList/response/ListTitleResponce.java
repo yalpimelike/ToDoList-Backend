@@ -1,4 +1,4 @@
-package com.melikesivrikaya.toDoList.responce;
+package com.melikesivrikaya.toDoList.response;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
 import lombok.Data;

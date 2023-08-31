@@ -1,4 +1,4 @@
-package com.melikesivrikaya.toDoList.responce;
+package com.melikesivrikaya.toDoList.response;
 
 import com.melikesivrikaya.toDoList.model.Friend;
 import com.melikesivrikaya.toDoList.model.User;

@@ -1,6 +1,6 @@
 package com.melikesivrikaya.toDoList.service;
 
-import com.melikesivrikaya.toDoList.responce.ListResponce;
+import com.melikesivrikaya.toDoList.response.ListResponce;
 
 import java.util.List;
 

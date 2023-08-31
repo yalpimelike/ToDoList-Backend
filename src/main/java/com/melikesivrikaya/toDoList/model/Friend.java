@@ -18,4 +18,11 @@ public class Friend {
     private Long userId; // bu friends objesinin temsil edeceği user id si
     private String name;
     private FriendState friendState;
+
+    public Friend(Long friendId, Long userId, String name, FriendState friendState) {
+        this.friendId = friendId;
+        this.userId = userId;
+        this.name = name;
+        this.friendState = friendState;
+    }
 }

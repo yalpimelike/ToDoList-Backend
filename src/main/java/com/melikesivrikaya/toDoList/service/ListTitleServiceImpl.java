@@ -1,17 +1,14 @@
 package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
-import com.melikesivrikaya.toDoList.model.User;
-import com.melikesivrikaya.toDoList.repository.ListRepository;
 import com.melikesivrikaya.toDoList.repository.ListTitleRepository;
 import com.melikesivrikaya.toDoList.repository.ListTitleWithListResponce;
-import com.melikesivrikaya.toDoList.responce.ListResponce;
-import com.melikesivrikaya.toDoList.responce.ListTitleResponce;
+import com.melikesivrikaya.toDoList.response.ListResponce;
+import com.melikesivrikaya.toDoList.response.ListTitleResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 

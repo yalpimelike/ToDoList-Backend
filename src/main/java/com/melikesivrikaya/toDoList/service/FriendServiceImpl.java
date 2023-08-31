@@ -31,20 +31,31 @@ public class FriendServiceImpl implements FriendService{
         User user = userRepository.findById(friend.getUserId()).get();
         friend.setName(user.getName());
         if(friend.getFriendState()== null){
-            friend.setFriendState(FriendState.WAIT);
+            friend.setFriendState(FriendState.SENTED_REQUEST);
         }
+        User user1= userRepository.findById(friend.getFriendId()).get();
+        Friend userFriend = new Friend(user.getId(), friend.getFriendId(), user1.getName(), FriendState.REQUEST);
+        friendRepository.save(userFriend);
         return friendRepository.save(friend);
     }
     @Override
     public Friend updateFriend( UpdateFriendRequest updateFriend) {
         Friend friend = friendRepository.findById(updateFriend.getId()).get();
         friend.setFriendState(updateFriend.getFriendState());
+        Friend friendByRequest = friendRepository.findByUserIdAndFriendId(friend.getFriendId(),friend.getUserId());
+        if (updateFriend.getFriendState() == FriendState.SUCCESS){
+            friendByRequest.setFriendState(FriendState.SUCCESS);
+        }
+        friendRepository.save(friendByRequest);
         return friendRepository.save(friend);
     }
 
     @Override
     public void deleteFriend(Long id) {
+        Friend friend = friendRepository.findById(id).get();
+        Friend friendByRequest = friendRepository.findByUserIdAndFriendId(friend.getFriendId(), friend.getUserId());
         friendRepository.deleteById(id);
+        friendRepository.deleteById(friendByRequest.getId());
     }
 
 

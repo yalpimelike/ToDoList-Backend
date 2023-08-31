@@ -2,6 +2,7 @@ package com.melikesivrikaya.toDoList.model;
 
 public enum FriendState {
     SUCCESS,
-    WAIT,
-    REJECTED
+    SENTED_REQUEST,
+    REQUEST
+
 }

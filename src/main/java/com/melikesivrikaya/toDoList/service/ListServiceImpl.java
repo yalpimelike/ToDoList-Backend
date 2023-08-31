@@ -2,7 +2,7 @@ package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.List;
 import com.melikesivrikaya.toDoList.repository.ListRepository;
-import com.melikesivrikaya.toDoList.responce.ListResponce;
+import com.melikesivrikaya.toDoList.response.ListResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

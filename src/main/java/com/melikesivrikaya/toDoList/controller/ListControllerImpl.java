@@ -1,12 +1,11 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.List;
-import com.melikesivrikaya.toDoList.responce.ListResponce;
+import com.melikesivrikaya.toDoList.response.ListResponce;
 import com.melikesivrikaya.toDoList.service.ListService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/lists")

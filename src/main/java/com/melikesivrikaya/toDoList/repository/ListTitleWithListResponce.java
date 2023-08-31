@@ -1,7 +1,7 @@
 package com.melikesivrikaya.toDoList.repository;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
-import com.melikesivrikaya.toDoList.responce.ListResponce;
+import com.melikesivrikaya.toDoList.response.ListResponce;
 import lombok.Data;
 
 import java.util.List;

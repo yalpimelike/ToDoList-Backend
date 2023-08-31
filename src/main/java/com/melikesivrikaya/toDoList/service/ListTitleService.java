@@ -1,13 +1,10 @@
 package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
-import com.melikesivrikaya.toDoList.model.User;
 import com.melikesivrikaya.toDoList.repository.ListTitleWithListResponce;
-import com.melikesivrikaya.toDoList.responce.ListTitleResponce;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.melikesivrikaya.toDoList.response.ListTitleResponce;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ListTitleService {
     List<ListTitleWithListResponce> getListTitles();

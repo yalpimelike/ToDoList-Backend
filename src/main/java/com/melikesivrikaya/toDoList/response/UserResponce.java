@@ -1,11 +1,7 @@
-package com.melikesivrikaya.toDoList.responce;
+package com.melikesivrikaya.toDoList.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.melikesivrikaya.toDoList.model.User;
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.Serializable;
 @Data

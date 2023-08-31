@@ -1,19 +1,14 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.User;
-import com.melikesivrikaya.toDoList.responce.UserResponce;
-import com.melikesivrikaya.toDoList.responce.UserWithFriendResponce;
+import com.melikesivrikaya.toDoList.response.UserListWithFriendStateResponce;
+import com.melikesivrikaya.toDoList.response.UserResponce;
+import com.melikesivrikaya.toDoList.response.UserWithFriendResponce;
 import com.melikesivrikaya.toDoList.service.UserService;
-import com.melikesivrikaya.toDoList.service.UserServiceImpl;
-import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -47,7 +42,7 @@ public class UserControllerImpl implements UserController{
     }
     @GetMapping("{userId}")
     @Override
-    public List<UserResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
+    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
         return userService.getUsersWitoutFriendByUserId(userId);
     }
 }

@@ -1,9 +1,6 @@
 package com.melikesivrikaya.toDoList.controller;
 
-import com.melikesivrikaya.toDoList.model.List;
-import com.melikesivrikaya.toDoList.responce.ListResponce;
-
-import java.util.Optional;
+import com.melikesivrikaya.toDoList.response.ListResponce;
 
 public interface ListController {
     java.util.List<ListResponce> getLists();

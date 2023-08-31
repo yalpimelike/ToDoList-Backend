@@ -1,19 +1,18 @@
 package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.Friend;
+import com.melikesivrikaya.toDoList.model.FriendState;
 import com.melikesivrikaya.toDoList.model.User;
 import com.melikesivrikaya.toDoList.repository.FriendRepository;
 import com.melikesivrikaya.toDoList.repository.UserRepository;
-import com.melikesivrikaya.toDoList.responce.UserResponce;
-import com.melikesivrikaya.toDoList.responce.UserWithFriendResponce;
+import com.melikesivrikaya.toDoList.response.UserListWithFriendStateResponce;
+import com.melikesivrikaya.toDoList.response.UserResponce;
+import com.melikesivrikaya.toDoList.response.UserWithFriendResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,14 +48,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<UserResponce> getUsersWitoutFriendByUserId(Long userId) {
+    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(Long userId) {
         List<Friend> friends = friendRepository.findAllByFriendId(userId); // userId'ye ait kullanıcının arkadaşları
         List<User> allUsers = userRepository.findAll(); // Tüm kullanıcılar
-        List<UserResponce> usersWithoutMyFriends = new ArrayList<>();
+        List<UserListWithFriendStateResponce> usersWithoutMyFriends = new ArrayList<>();
         allUsers.forEach(user -> {
-            boolean isFriend = friends.stream().anyMatch(friend -> friend.getUserId() == user.getId());
-            if (!isFriend) {
-                usersWithoutMyFriends.add(new UserResponce(user));
+            if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.SENTED_REQUEST)) {
+                usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user,FriendState.SENTED_REQUEST));
+            } else if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.REQUEST)) {
+
+            }else if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.SUCCESS)) {
+
+            }else if (friends.stream().anyMatch(friend -> friend.getUserId() != user.getId() )) {
+                usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user));
             }
         });
         return usersWithoutMyFriends;
