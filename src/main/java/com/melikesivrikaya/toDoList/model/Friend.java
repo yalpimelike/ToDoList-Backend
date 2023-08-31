@@ -14,8 +14,8 @@ public class Friend {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long friendId; // friend listesine eklenecek kişinin id si
-    private Long userId; // bu friends objesinin temsil edeceği user id si
+    private Long friendId;   //Arkadaşlık bağı oluşturan kullanıcı id si
+    private Long userId;     //Arkadaşlık bağı oluşturulan kullanıcı id si
     private String name;
     private FriendState friendState;
 

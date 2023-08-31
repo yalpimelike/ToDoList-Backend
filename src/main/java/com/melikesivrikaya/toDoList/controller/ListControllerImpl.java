@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.List;
+import com.melikesivrikaya.toDoList.request.UpdateListRequest;
 import com.melikesivrikaya.toDoList.response.ListResponce;
 import com.melikesivrikaya.toDoList.service.ListService;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ public class ListControllerImpl implements ListController{
     }
     @PutMapping
     @Override
-    public ListResponce updateList(@RequestBody List list) {
+    public ListResponce updateList(@RequestBody UpdateListRequest list) {
         return listService.updateList(list);
     }
     @GetMapping("/{userId}")

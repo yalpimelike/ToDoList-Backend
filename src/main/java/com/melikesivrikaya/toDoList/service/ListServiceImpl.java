@@ -2,6 +2,7 @@ package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.List;
 import com.melikesivrikaya.toDoList.repository.ListRepository;
+import com.melikesivrikaya.toDoList.request.UpdateListRequest;
 import com.melikesivrikaya.toDoList.response.ListResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,9 @@ public class ListServiceImpl implements ListService{
     }
 
     @Override
-    public ListResponce updateList(List list) {
+    public ListResponce updateList(UpdateListRequest updatelist) {
+        List list = listRepository.findById(updatelist.getId()).get();
+        list.setState(updatelist.isState());
         listRepository.save(list);
         return new ListResponce(list);
     }

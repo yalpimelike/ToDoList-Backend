@@ -10,15 +10,18 @@ public class UserListWithFriendStateResponce {
     private String name;
     private String address;
     private FriendState friendState;
+    private String profilFotoUrl;
     public UserListWithFriendStateResponce(User user , FriendState friendState){
         this.id = user.getId();
         this.name = user.getName();
         this.address = user.getAddress();
         this.friendState = friendState;
+        this.profilFotoUrl= user.getProfilFotoUrl();
     }
     public UserListWithFriendStateResponce(User user ){
         this.id = user.getId();
         this.name = user.getName();
         this.address = user.getAddress();
+        this.profilFotoUrl= user.getProfilFotoUrl();
     }
 }
