@@ -13,6 +13,7 @@ public interface FriendService {
     Friend createFriend(Friend friend);
     Friend updateFriend( UpdateFriendRequest updateFriend);
     void deleteFriend(Long id);
+    void deleteFriendPair(Long id);
 
     List<Friend> getFriendsByUserId(Long userId);
 

@@ -53,13 +53,16 @@ public class FriendServiceImpl implements FriendService{
     }
 
     @Override
-    public void deleteFriend(Long id) {
+    public void deleteFriendPair(Long id) {
         Friend friend = friendRepository.findById(id).get();
         friendRepository.deleteById(id);
         Friend friendByRequest = friendRepository.findByUserIdAndFriendId(friend.getFriendId(), friend.getUserId());
         friendRepository.deleteById(friendByRequest.getId());
     }
-
+    @Override
+    public void deleteFriend(Long id) {
+        friendRepository.deleteById(id);
+    }
 
     //Arkadaşımın arkadaşlarını bu fonksiyonla görebilirim
     @Override
@@ -75,6 +78,6 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public void deleteFriendByUserIdAndFriendId(DeleteFriendByUserIdAndFriendIdRequest deleteFriend) {
         Friend friend = friendRepository.findByUserIdAndFriendId(deleteFriend.getUserId(), deleteFriend.getFriendId());
-        deleteFriend(friend.getId());
+        deleteFriendPair(friend.getId());
     }
 }

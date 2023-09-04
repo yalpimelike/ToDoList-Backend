@@ -31,7 +31,6 @@ public class FriendControllerImpl implements FriendController{
     @PutMapping
     @Override
     public Friend updateFriend(@RequestBody UpdateFriendRequest updateFriend) {
-
         return friendService.updateFriend(updateFriend);
     }
     @DeleteMapping("/{id}")
@@ -39,6 +38,12 @@ public class FriendControllerImpl implements FriendController{
     public void deleteFriend(@PathVariable Long id) {
         friendService.deleteFriend(id);
     }
+    @DeleteMapping("/pair/{id}")
+    @Override
+    public void deleteFriendPair(@PathVariable Long id) {
+        friendService.deleteFriendPair(id);
+    }
+
     @GetMapping("/friend")
     @Override
     public List<Friend> getFriendsByUserId(@RequestParam(name = "userId") Long userId) {

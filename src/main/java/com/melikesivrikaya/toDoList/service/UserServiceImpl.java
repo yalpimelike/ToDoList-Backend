@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public void deleteUser(Long id) {
+        List<Friend> friends = friendService.getFriendsByFriendsId(id);
+        friends.forEach(f -> friendService.deleteFriendPair(f.getId()));
         userRepository.deleteById(id);
     }
     @Override
@@ -55,14 +57,13 @@ public class UserServiceImpl implements UserService{
         allUsers.forEach(user -> {
             if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.SENTED_REQUEST)) {
                 usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user,FriendState.SENTED_REQUEST));
-            } else if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.REQUEST)) {
-
-            }else if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.SUCCESS)) {
-
             }else if (friends.stream().anyMatch(friend -> friend.getUserId() != user.getId() )) {
                 usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user));
             }
         });
+        if(usersWithoutMyFriends.isEmpty()){
+            return allUsers.stream().map(u -> new UserListWithFriendStateResponce(u)).collect(Collectors.toList());
+        }
         return usersWithoutMyFriends;
     }
 }
