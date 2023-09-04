@@ -1,5 +1,6 @@
 package com.melikesivrikaya.toDoList.controller;
 import com.melikesivrikaya.toDoList.model.Friend;
+import com.melikesivrikaya.toDoList.request.CreateFriendRequest;
 import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 import com.melikesivrikaya.toDoList.service.FriendService;
@@ -25,8 +26,13 @@ public class FriendControllerImpl implements FriendController{
     }
     @PostMapping
     @Override
-    public Friend createFriend(@RequestBody Friend friend) {
-        return friendService.createFriend(friend);
+    public Friend createFriend(@RequestBody CreateFriendRequest createFriendRequest) {
+        Friend friend = friendService.getFriendByUserIdAndFriendId(createFriendRequest.getUserId(), createFriendRequest.getFriendId());
+        Friend friend1 = friendService.getFriendByUserIdAndFriendId(createFriendRequest.getFriendId(), createFriendRequest.getUserId());
+        if(friend == null && friend1 == null){
+            return friendService.createFriend(createFriendRequest);
+        }
+        return null;
     }
     @PutMapping
     @Override

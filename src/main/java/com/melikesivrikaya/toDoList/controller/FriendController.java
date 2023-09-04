@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 
 import com.melikesivrikaya.toDoList.model.Friend;
+import com.melikesivrikaya.toDoList.request.CreateFriendRequest;
 import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 
@@ -10,7 +11,7 @@ import java.util.Optional;
 public interface FriendController {
     List<Friend> getFriends();
     Optional<Friend> getFriendById(Long id);
-    Friend createFriend(Friend friend);
+    Friend createFriend(CreateFriendRequest createFriendRequest);
     Friend updateFriend( UpdateFriendRequest updateFriend);
     void deleteFriend(Long id);
     void deleteFriendPair(Long id);
