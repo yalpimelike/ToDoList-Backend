@@ -2,7 +2,7 @@ package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
 import com.melikesivrikaya.toDoList.repository.ListTitleRepository;
-import com.melikesivrikaya.toDoList.repository.ListTitleWithListResponce;
+import com.melikesivrikaya.toDoList.response.ListTitleWithListResponce;
 import com.melikesivrikaya.toDoList.response.ListResponce;
 import com.melikesivrikaya.toDoList.response.ListTitleResponce;
 import lombok.AllArgsConstructor;

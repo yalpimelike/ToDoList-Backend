@@ -5,6 +5,7 @@ import com.melikesivrikaya.toDoList.model.FriendState;
 import com.melikesivrikaya.toDoList.model.User;
 import com.melikesivrikaya.toDoList.repository.FriendRepository;
 import com.melikesivrikaya.toDoList.repository.UserRepository;
+import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public Friend createFriend(Friend friend) {
         User user = userRepository.findById(friend.getUserId()).get();
+
         friend.setName(user.getName());
         if(friend.getFriendState()== null){
             friend.setFriendState(FriendState.SENTED_REQUEST);
@@ -53,8 +55,8 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public void deleteFriend(Long id) {
         Friend friend = friendRepository.findById(id).get();
-        Friend friendByRequest = friendRepository.findByUserIdAndFriendId(friend.getFriendId(), friend.getUserId());
         friendRepository.deleteById(id);
+        Friend friendByRequest = friendRepository.findByUserIdAndFriendId(friend.getFriendId(), friend.getUserId());
         friendRepository.deleteById(friendByRequest.getId());
     }
 
@@ -68,5 +70,11 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public List<Friend> getFriendsByFriendsId(Long friendId) {
         return friendRepository.findAllByFriendId(friendId);
+    }
+
+    @Override
+    public void deleteFriendByUserIdAndFriendId(DeleteFriendByUserIdAndFriendIdRequest deleteFriend) {
+        Friend friend = friendRepository.findByUserIdAndFriendId(deleteFriend.getUserId(), deleteFriend.getFriendId());
+        deleteFriend(friend.getId());
     }
 }

@@ -1,6 +1,7 @@
 package com.melikesivrikaya.toDoList.service;
 
 import com.melikesivrikaya.toDoList.model.Friend;
+import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface FriendService {
     List<Friend> getFriendsByUserId(Long userId);
 
     List<Friend> getFriendsByFriendsId(Long friendId);
+
+    void deleteFriendByUserIdAndFriendId(DeleteFriendByUserIdAndFriendIdRequest deleteFriend);
 }

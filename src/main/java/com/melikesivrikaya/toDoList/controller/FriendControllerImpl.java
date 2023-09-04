@@ -1,13 +1,10 @@
 package com.melikesivrikaya.toDoList.controller;
-
 import com.melikesivrikaya.toDoList.model.Friend;
-import com.melikesivrikaya.toDoList.model.FriendState;
+import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
 import com.melikesivrikaya.toDoList.service.FriendService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +49,10 @@ public class FriendControllerImpl implements FriendController{
     public List<Friend> getFriendsByFriendId(@PathVariable Long friendId){
         return friendService.getFriendsByFriendsId(friendId);
     }
-
+    @DeleteMapping(path = "/friend")
+    @Override
+    public void deleteFriendByUserIDAndFriendId(@RequestBody DeleteFriendByUserIdAndFriendIdRequest deleteFriend){
+        friendService.deleteFriendByUserIdAndFriendId(deleteFriend);
+    }
 
 }

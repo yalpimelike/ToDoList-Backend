@@ -22,6 +22,7 @@ public class UserListWithFriendStateResponce {
         this.id = user.getId();
         this.name = user.getName();
         this.address = user.getAddress();
+        this.friendState = friendState;
         this.profilFotoUrl= user.getProfilFotoUrl();
     }
 }

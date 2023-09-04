@@ -1,4 +1,4 @@
-package com.melikesivrikaya.toDoList.repository;
+package com.melikesivrikaya.toDoList.response;
 
 import com.melikesivrikaya.toDoList.model.ListTitle;
 import com.melikesivrikaya.toDoList.response.ListResponce;
