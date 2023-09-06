@@ -12,10 +12,12 @@ public class UserWithFriendResponce {
     private String name;
     private String address;
     private List<Friend> friendList;
+    private String profilFotoUrl;
     public UserWithFriendResponce(User user , List<Friend> friends){
         this.id = user.getId();
         this.name = user.getName();
         this.address = user.getAddress();
         this.friendList = friends;
+        this.profilFotoUrl = user.getProfilFotoUrl();
     }
 }

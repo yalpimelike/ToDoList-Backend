@@ -22,6 +22,11 @@ public class ListControllerImpl implements ListController{
     public ListResponce getList(@RequestParam(name = "id") Long id) {
         return listService.getList(id);
     }
+    @GetMapping("/{userId}")
+    @Override
+    public java.util.List<ListResponce> getListsByUserId(@PathVariable Long userId) {
+        return listService.getListsByUserId(userId);
+    }
     @DeleteMapping(path = "/list")
     @Override
     public void deleteList(@RequestParam(name = "id") Long id) {
@@ -37,9 +42,5 @@ public class ListControllerImpl implements ListController{
     public ListResponce updateList(@RequestBody UpdateListRequest list) {
         return listService.updateList(list);
     }
-    @GetMapping("/{userId}")
-    @Override
-    public java.util.List<ListResponce> getListsByUserId(@PathVariable Long userId) {
-        return listService.getListsByUserId(userId);
-    }
+
 }

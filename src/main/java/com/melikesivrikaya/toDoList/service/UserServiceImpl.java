@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,20 +51,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(Long userId) {
-        List<Friend> friends = friendRepository.findAllByFriendId(userId); // userId'ye ait kullanıcının arkadaşları
+    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(Long friendId) {
+        List<Friend> friends = friendRepository.findAllByFriendId(friendId); // userId'ye ait kullanıcının arkadaşları
         List<User> allUsers = userRepository.findAll(); // Tüm kullanıcılar
         List<UserListWithFriendStateResponce> usersWithoutMyFriends = new ArrayList<>();
+
         allUsers.forEach(user -> {
-            if (friends.stream().anyMatch(friend -> friend.getUserId() == user.getId() && friend.getFriendState() == FriendState.SENTED_REQUEST)) {
-                usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user,FriendState.SENTED_REQUEST));
-            }else if (friends.stream().anyMatch(friend -> friend.getUserId() != user.getId() )) {
+            boolean state = friends.stream().anyMatch(friend -> Objects.equals(friend.getUserId(), user.getId()));
+            if(!state){
                 usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user));
             }
+            boolean sentedRequest = friends.stream().anyMatch(friend -> Objects.equals(friend.getUserId(), user.getId()) && friend.getFriendState() == FriendState.SENTED_REQUEST);
+            if(sentedRequest){
+                usersWithoutMyFriends.add(new UserListWithFriendStateResponce(user,FriendState.SENTED_REQUEST));
+            }
+
         });
-        if(usersWithoutMyFriends.isEmpty()){
-            return allUsers.stream().map(u -> new UserListWithFriendStateResponce(u)).collect(Collectors.toList());
-        }
         return usersWithoutMyFriends;
     }
 }

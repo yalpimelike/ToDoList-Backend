@@ -19,11 +19,25 @@ public class FriendControllerImpl implements FriendController{
     public List<Friend> getFriends() {
         return friendService.getFriends();
     }
+    @GetMapping("/friend")
+    @Override
+    public List<Friend> getFriendsByUserId(@RequestParam(name = "userId") Long userId) {
+        return friendService.getFriendsByUserId(userId);
+    }
+    @GetMapping({"/friend/{friendId}"})
+    @Override
+    public List<Friend> getFriendsByFriendId(@PathVariable Long friendId){
+        return friendService.getFriendsByFriendsId(friendId);
+    }
     @GetMapping("/{id}")
     @Override
     public Optional<Friend> getFriendById(@PathVariable Long id) {
         return friendService.getFriendById(id);
     }
+
+
+
+
     @PostMapping
     @Override
     public Friend createFriend(@RequestBody CreateFriendRequest createFriendRequest) {
@@ -39,6 +53,8 @@ public class FriendControllerImpl implements FriendController{
     public Friend updateFriend(@RequestBody UpdateFriendRequest updateFriend) {
         return friendService.updateFriend(updateFriend);
     }
+
+
     @DeleteMapping("/{id}")
     @Override
     public void deleteFriend(@PathVariable Long id) {
@@ -50,16 +66,6 @@ public class FriendControllerImpl implements FriendController{
         friendService.deleteFriendPair(id);
     }
 
-    @GetMapping("/friend")
-    @Override
-    public List<Friend> getFriendsByUserId(@RequestParam(name = "userId") Long userId) {
-        return friendService.getFriendsByUserId(userId);
-    }
-    @GetMapping({"/friend/{friendId}"})
-    @Override
-    public List<Friend> getFriendsByFriendId(@PathVariable Long friendId){
-        return friendService.getFriendsByFriendsId(friendId);
-    }
     @DeleteMapping(path = "/friend")
     @Override
     public void deleteFriendByUserIDAndFriendId(@RequestBody DeleteFriendByUserIdAndFriendIdRequest deleteFriend){

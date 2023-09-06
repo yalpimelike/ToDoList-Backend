@@ -25,6 +25,12 @@ public class UserControllerImpl implements UserController{
     public UserWithFriendResponce getUser(@RequestParam(name = "id") Long id){
         return userService.getUser(id);
     }
+    @GetMapping("{userId}")
+    @Override
+    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
+        return userService.getUsersWitoutFriendByUserId(userId);
+    }
+
     @DeleteMapping(path = "user")
     @Override
     public void deleteUser(@RequestParam(name = "id") Long id) {
@@ -40,9 +46,5 @@ public class UserControllerImpl implements UserController{
     public UserResponce updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
-    @GetMapping("{userId}")
-    @Override
-    public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
-        return userService.getUsersWitoutFriendByUserId(userId);
-    }
+
 }

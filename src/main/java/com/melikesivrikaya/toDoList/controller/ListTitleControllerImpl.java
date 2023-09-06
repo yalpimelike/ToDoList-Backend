@@ -14,10 +14,17 @@ import java.util.List;
 @RequestMapping(path = "/listtitles")
 public class ListTitleControllerImpl implements ListTitleController {
     private ListTitleService listTitleService;
+
     @GetMapping
     @Override
-    public List<ListTitleWithListResponce> getListTitles() {
+    public List<ListTitle> getListTitles() {
         return listTitleService.getListTitles();
+    }
+
+    @GetMapping("/tasks")
+    @Override
+    public List<ListTitleWithListResponce> getListTitlesWithTask() {
+        return listTitleService.getListTitlesWithTask();
     }
     @GetMapping("/{userId}")
     @Override

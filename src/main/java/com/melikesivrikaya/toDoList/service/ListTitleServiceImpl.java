@@ -19,7 +19,7 @@ public class ListTitleServiceImpl implements ListTitleService{
     private ListService listService;
 
     @Override
-    public List<ListTitleWithListResponce> getListTitles() {
+    public List<ListTitleWithListResponce> getListTitlesWithTask() {
         List<ListTitle> list = listTitleRepository.findAll();
         return list.stream().map(l -> {
             List<ListResponce> lists = listService.getListByListTitleId(l.getId());
@@ -58,5 +58,10 @@ public class ListTitleServiceImpl implements ListTitleService{
                   return new ListTitleWithListResponce(l,lists);
            }
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ListTitle> getListTitles() {
+        return listTitleRepository.findAll();
     }
 }

@@ -7,7 +7,8 @@ import com.melikesivrikaya.toDoList.response.ListTitleResponce;
 import java.util.List;
 
 public interface ListTitleController {
-    List<ListTitleWithListResponce> getListTitles();
+    List<ListTitle> getListTitles();
+    List<ListTitleWithListResponce> getListTitlesWithTask();
     ListTitleResponce getListTitle(Long id);
     void deleteListTitle(Long id);
     ListTitleResponce createListTitle(ListTitle listTitle);
