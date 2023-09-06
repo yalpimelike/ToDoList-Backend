@@ -35,13 +35,12 @@ public class FriendServiceImpl implements FriendService{
         friend.setFriendId(createFriendRequest.getFriendId());
         friend.setUserId(createFriendRequest.getUserId());
         friend.setName(user.getName());
-        if(friend.getFriendState()== null){
-            friend.setFriendState(FriendState.SENTED_REQUEST);
-        }
-        User user1= userRepository.findById(friend.getFriendId()).get();
+        friend.setFriendState(FriendState.SENTED_REQUEST);
+        User user1 = userRepository.findById(friend.getFriendId()).get();
         Friend userFriend = new Friend(user.getId(), friend.getFriendId(), user1.getName(), FriendState.REQUEST);
         friendRepository.save(userFriend);
         return friendRepository.save(friend);
+
     }
     @Override
     public Friend updateFriend( UpdateFriendRequest updateFriend) {

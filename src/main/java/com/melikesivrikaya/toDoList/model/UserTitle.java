@@ -4,6 +4,9 @@ public enum UserTitle {
     ENGINEER,
     TEACHER,
     DOCTOR,
-
+    OFFICER,
+    STUDENT,
+    RETIRED,
+    JOBLESS
 
 }
