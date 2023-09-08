@@ -3,7 +3,9 @@ package com.melikesivrikaya.toDoList.service;
 import com.melikesivrikaya.toDoList.model.Friend;
 import com.melikesivrikaya.toDoList.request.CreateFriendRequest;
 import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
+import com.melikesivrikaya.toDoList.request.IsUsersFriendRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
+import com.melikesivrikaya.toDoList.response.FriendStateResponce;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +24,6 @@ public interface FriendService {
 
     void deleteFriendByUserIdAndFriendId(DeleteFriendByUserIdAndFriendIdRequest deleteFriend);
     Friend getFriendByUserIdAndFriendId(Long userId , Long friendId);
+    boolean isUserFriend(IsUsersFriendRequest isUsersFriendRequest);
+    FriendStateResponce getFriendWithFriendState(IsUsersFriendRequest isUsersFriendRequest);
 }

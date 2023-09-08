@@ -28,11 +28,18 @@ public class UserServiceImpl implements UserService{
          return users.stream().map(user -> new UserResponce(user)).collect(Collectors.toList());
     }
     @Override
-    public UserWithFriendResponce getUser(Long id) {
+    public UserWithFriendResponce getUserWithFriend(Long id) {
         User user = userRepository.findById(id).get();
         List<Friend> friends = friendService.getFriendsByFriendsId(id);
          return new UserWithFriendResponce(user,friends);
     }
+
+    @Override
+    public UserResponce getUserById(Long userId) {
+        User user = userRepository.findById(userId).get();
+        return new UserResponce(user);
+    }
+
     @Override
     public void deleteUser(Long id) {
         List<Friend> friends = friendService.getFriendsByFriendsId(id);

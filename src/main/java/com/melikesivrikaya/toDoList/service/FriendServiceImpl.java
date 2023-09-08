@@ -7,7 +7,9 @@ import com.melikesivrikaya.toDoList.repository.FriendRepository;
 import com.melikesivrikaya.toDoList.repository.UserRepository;
 import com.melikesivrikaya.toDoList.request.CreateFriendRequest;
 import com.melikesivrikaya.toDoList.request.DeleteFriendByUserIdAndFriendIdRequest;
+import com.melikesivrikaya.toDoList.request.IsUsersFriendRequest;
 import com.melikesivrikaya.toDoList.request.UpdateFriendRequest;
+import com.melikesivrikaya.toDoList.response.FriendStateResponce;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +88,28 @@ public class FriendServiceImpl implements FriendService{
     @Override
     public Friend getFriendByUserIdAndFriendId(Long userId, Long friendId) {
         return friendRepository.findByUserIdAndFriendId(userId,friendId);
+    }
+    @Override
+    public boolean isUserFriend(IsUsersFriendRequest isUsersFriendRequest){
+        Friend friend = friendRepository.findByUserIdAndFriendId(isUsersFriendRequest.getUserId() , isUsersFriendRequest.getFriendId());
+        if(friend == null){
+            return false;
+        }
+        else if(friend.getFriendState() != FriendState.SUCCESS){
+            return false;
+        }
+       else {
+           return true;
+        }
+    }
+    @Override
+    public FriendStateResponce getFriendWithFriendState(IsUsersFriendRequest isUsersFriendRequest){
+        Friend friend = friendRepository.findByUserIdAndFriendId(isUsersFriendRequest.getUserId(), isUsersFriendRequest.getFriendId());
+        User user = userRepository.findById(isUsersFriendRequest.getUserId()).get();
+        //friend boşta direk userı gönder değilse responce
+        if(friend == null){
+            return new FriendStateResponce(isUsersFriendRequest.getFriendId(),user);
+        }
+        return new FriendStateResponce(friend,user);
     }
 }

@@ -3,8 +3,6 @@ package com.melikesivrikaya.toDoList.controller;
 import com.melikesivrikaya.toDoList.model.UserFoto;
 import com.melikesivrikaya.toDoList.service.UserGalleryService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface UserService {
     List<UserResponce> getUsers();
-    UserWithFriendResponce getUser(Long id);
+    UserWithFriendResponce getUserWithFriend(Long id);
+    UserResponce getUserById(Long userId);
     void deleteUser(Long id);
     UserResponce createUser(User user);
     UserResponce updateUser(User user);

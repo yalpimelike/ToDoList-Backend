@@ -20,16 +20,22 @@ public class UserControllerImpl implements UserController{
     public List<UserResponce> getUsers() {
         return userService.getUsers();
     }
+    @GetMapping("/user/{userId}")
+    @Override
+    public UserResponce getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
     @GetMapping(path = "user")
     @Override
-    public UserWithFriendResponce getUser(@RequestParam(name = "id") Long id){
-        return userService.getUser(id);
+    public UserWithFriendResponce getUserWithFriend(@RequestParam(name = "id") Long id){
+        return userService.getUserWithFriend(id);
     }
     @GetMapping("{userId}")
     @Override
     public List<UserListWithFriendStateResponce> getUsersWitoutFriendByUserId(@PathVariable Long userId){
         return userService.getUsersWitoutFriendByUserId(userId);
     }
+
 
     @DeleteMapping(path = "user")
     @Override
