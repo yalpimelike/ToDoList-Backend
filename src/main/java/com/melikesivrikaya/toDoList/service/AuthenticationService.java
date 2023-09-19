@@ -23,11 +23,12 @@ import javax.management.remote.JMXAuthenticator;
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponce register(RegisterRequest request){
         User registerUser = new User();
         registerUser.setName(request.getName());
-        registerUser.setPassword(new BCryptPasswordEncoder().encode(request.getPassword()));
+        registerUser.setPassword(passwordEncoder.encode(request.getPassword()));
         registerUser.setRole(Role.USER);
         userRepository.save(registerUser);
         return new AuthenticationResponce(jwtService.generateToken(registerUser));
