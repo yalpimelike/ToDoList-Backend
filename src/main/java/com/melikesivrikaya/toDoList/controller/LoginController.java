@@ -1,5 +1,7 @@
 package com.melikesivrikaya.toDoList.controller;
 import com.melikesivrikaya.toDoList.model.User;
+import com.melikesivrikaya.toDoList.request.RegisterRequest;
+import com.melikesivrikaya.toDoList.response.AuthenticationResponce;
 import com.melikesivrikaya.toDoList.response.UserResponce;
 import com.melikesivrikaya.toDoList.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +14,7 @@ public class LoginController {
     private final AuthenticationService authenticationService;
 
     @PostMapping
-    public String login(@RequestBody User user){
-        return authenticationService.register(user);
+    public AuthenticationResponce login(@RequestBody RegisterRequest request){
+        return authenticationService.register(request);
     }
 }
